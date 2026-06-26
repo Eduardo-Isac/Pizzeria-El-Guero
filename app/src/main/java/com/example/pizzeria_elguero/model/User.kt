@@ -1,4 +1,6 @@
 package com.example.pizzeria_elguero.model
 
-class User {
-}
+data class User(
+    val name: String = "",
+    val password: String = "",
+)
