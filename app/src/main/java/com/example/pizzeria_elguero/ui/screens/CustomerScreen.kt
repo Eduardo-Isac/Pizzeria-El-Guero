@@ -1,7 +1,6 @@
 package com.example.pizzeria_elguero.ui.screens
 
-import android.app.Activity
-import android.content.Intent
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,12 +22,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import com.example.pizzeria_elguero.LoginActivity
 import com.example.pizzeria_elguero.R
 import com.example.pizzeria_elguero.navigation.Routes
 
 @Composable
-fun MenuScreen(navController: NavController) {
+fun CustomerScreen(navController: NavController) {
 
     val context = LocalContext.current
 
@@ -47,54 +45,42 @@ fun MenuScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-
             Text(
-                text = "Menu principal",
+                text = "Cliente",
                 color = Color.White,
                 style = MaterialTheme.typography.headlineMedium
             )
+
+            Spacer(modifier = Modifier.height(40.dp))
+
+            Button(
+                modifier = Modifier.width(220.dp),
+                onClick = {
+                    navController.navigate(Routes.PIZZA_MENU)
+                }
+            ) {
+                Text("Ver menu")
+            }
 
             Spacer(modifier = Modifier.height(20.dp))
 
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
-                    navController.navigate(Routes.CUSTOMER)
+                    navController.navigate(Routes.ORDER)
                 }
             ) {
-                Text("Cliente")
+                Text("Hacer pedido")
             }
 
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                modifier = Modifier.width(220.dp),
-                onClick = {
-                    navController.navigate(Routes.ORDERS)
-                }
-            ) {
-                Text("Ver pedidos")
-            }
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            Button(
-                modifier = Modifier.width(220.dp),
-                onClick = {
-                }
-            ) {
-                Text("Nosotros")
-            }
-
-            Spacer(modifier = Modifier.height(32.dp))
+            Spacer(modifier = Modifier.height(40.dp))
 
             Button(
                 onClick = {
-                    context.startActivity(Intent(context, LoginActivity::class.java))
-                    (context as Activity).finish()
+                    navController.popBackStack()
                 }
             ) {
-                Text("Salir")
+                Text("Volver")
             }
         }
     }
