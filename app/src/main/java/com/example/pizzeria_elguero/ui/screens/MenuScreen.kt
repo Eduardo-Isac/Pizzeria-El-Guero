@@ -81,6 +81,7 @@ fun MenuScreen(navController: NavController) {
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
+                    navController.navigate(Routes.US)
                 }
             ) {
                 Text("Nosotros")

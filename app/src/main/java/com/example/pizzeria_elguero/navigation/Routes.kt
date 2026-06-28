@@ -5,4 +5,5 @@ object Routes {
     const val PIZZA_MENU = "pizza_menu"
     const val ORDER = "order"
     const val ORDERS = "orders"
+    const val US = "us"
 }

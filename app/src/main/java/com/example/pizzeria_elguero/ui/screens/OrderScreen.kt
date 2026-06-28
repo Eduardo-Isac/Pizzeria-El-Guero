@@ -44,6 +44,18 @@ fun OrderScreen(
     var amount by remember { mutableStateOf("") }
     var message by remember { mutableStateOf("") }
 
+    val coloresCampos = OutlinedTextFieldDefaults.colors(
+        focusedTextColor = Color.Black,
+        unfocusedTextColor = Color.Black,
+        cursorColor = Color.Black,
+
+        focusedContainerColor = Color.White,
+        unfocusedContainerColor = Color.White,
+
+        focusedBorderColor = Color.Transparent,
+        unfocusedBorderColor = Color.Transparent
+    )
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -74,14 +86,9 @@ fun OrderScreen(
             OutlinedTextField(
                 value = type,
                 onValueChange = { type = it },
-                placeholder = { Text("Tipo") },
+                placeholder = { Text("Tipo", color = Color.Black) },
                 singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    focusedBorderColor = Color.Transparent,
-                    unfocusedBorderColor = Color.Transparent
-                ),
+                colors = coloresCampos,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)
@@ -92,14 +99,9 @@ fun OrderScreen(
             OutlinedTextField(
                 value = size,
                 onValueChange = { size = it },
-                placeholder = { Text("Tamaño") },
+                placeholder = { Text("Tamaño", color = Color.Black) },
                 singleLine = true,
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = Color.White,
-                    unfocusedContainerColor = Color.White,
-                    focusedBorderColor = Color.Transparent,
-                    unfocusedBorderColor = Color.Transparent
-                ),
+                colors = coloresCampos,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)
@@ -110,17 +112,12 @@ fun OrderScreen(
             OutlinedTextField(
                 value = amount,
                 onValueChange = { amount = it },
-                placeholder = { Text("Cantidad") },
+                placeholder = { Text("Cantidad", color = Color.Black) },
                 singleLine = true,
                 keyboardOptions = KeyboardOptions(
                     keyboardType = KeyboardType.Number
                 ),
-                colors = OutlinedTextFieldDefaults.colors(
-                    focusedContainerColor = Color(0xFFFDFBF2),
-                    unfocusedContainerColor = Color(0xFFFDFBF2),
-                    focusedBorderColor = Color.Transparent,
-                    unfocusedBorderColor = Color.Transparent
-                ),
+                colors = coloresCampos,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp)

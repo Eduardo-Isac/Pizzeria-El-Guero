@@ -10,6 +10,7 @@ import com.example.pizzeria_elguero.ui.screens.MenuScreen
 import com.example.pizzeria_elguero.ui.screens.OrderScreen
 import com.example.pizzeria_elguero.ui.screens.OrdersScreen
 import com.example.pizzeria_elguero.ui.screens.PizzaMenuScreen
+import com.example.pizzeria_elguero.ui.screens.UsScreen
 import com.example.pizzeria_elguero.viewmodel.OrderViewModel
 
 @Composable
@@ -45,6 +46,9 @@ fun NavGraph(navController: NavHostController) {
                 navController = navController,
                 orderViewModel = orderViewModel
             )
+        }
+        composable(Routes.US) {
+            UsScreen(navController = navController)
         }
     }
 }
