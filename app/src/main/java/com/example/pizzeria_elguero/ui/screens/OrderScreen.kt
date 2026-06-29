@@ -48,10 +48,8 @@ fun OrderScreen(
         focusedTextColor = Color.Black,
         unfocusedTextColor = Color.Black,
         cursorColor = Color.Black,
-
         focusedContainerColor = Color.White,
         unfocusedContainerColor = Color.White,
-
         focusedBorderColor = Color.Transparent,
         unfocusedBorderColor = Color.Transparent
     )
@@ -135,16 +133,19 @@ fun OrderScreen(
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
-                    if (type.isNotBlank() && size.isNotBlank() && amount.isNotBlank()) {
-                        orderViewModel.addOrder(type, size, amount)
+                    val guardado = orderViewModel.addOrder(
+                        type = type,
+                        size = size,
+                        amount = amount
+                    )
 
+                    if (guardado) {
                         type = ""
                         size = ""
                         amount = ""
-
                         message = "Pedido guardado"
                     } else {
-                        message = "Llena todos los campos"
+                        message = "Llena todos los campos correctamente"
                     }
                 }
             ) {

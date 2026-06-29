@@ -26,8 +26,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.pizzeria_elguero.R
+import com.example.pizzeria_elguero.model.Order
 import com.example.pizzeria_elguero.viewmodel.OrderViewModel
-import com.example.pizzeria_elguero.viewmodel.PizzaOrder
 
 @Composable
 fun OrdersScreen(
@@ -96,7 +96,7 @@ fun OrdersScreen(
 @Composable
 fun OrderCard(
     number: Int,
-    order: PizzaOrder
+    order: Order
 ) {
     Card(
         modifier = Modifier.fillMaxWidth(),

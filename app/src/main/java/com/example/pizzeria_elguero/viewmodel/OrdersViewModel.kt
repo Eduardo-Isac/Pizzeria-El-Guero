@@ -2,28 +2,36 @@ package com.example.pizzeria_elguero.viewmodel
 
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModel
-
-data class PizzaOrder(
-    val type: String,
-    val size: String,
-    val amount: String
-)
+import com.example.pizzeria_elguero.model.Order
 
 class OrderViewModel : ViewModel() {
 
-    var orders = mutableStateListOf<PizzaOrder>()
+    private var nextId = 1
+
+    var orders = mutableStateListOf<Order>()
         private set
 
-    fun addOrder(type: String, size: String, amount: String) {
-        if (type.isNotBlank() && size.isNotBlank() && amount.isNotBlank()) {
-            orders.add(
-                PizzaOrder(
-                    type = type,
-                    size = size,
-                    amount = amount
-                )
-            )
+    fun addOrder(type: String, size: String, amount: String): Boolean {
+        if (type.isBlank() || size.isBlank() || amount.isBlank()) {
+            return false
         }
+
+        val amountInt = amount.toIntOrNull()
+
+        if (amountInt == null || amountInt <= 0) {
+            return false
+        }
+
+        orders.add(
+            Order(
+                id = nextId++,
+                type = type,
+                size = size,
+                amount = amountInt
+            )
+        )
+
+        return true
     }
 
     fun clearOrders() {

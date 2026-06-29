@@ -1,6 +1,5 @@
-package com.example.app26.ui.screens
+package com.example.pizzeria_elguero.ui.screens
 
-import android.app.Activity
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -30,8 +29,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
-import com.example.pizzeria_elguero.navigation.Routes
 import com.example.pizzeria_elguero.R
 import com.example.pizzeria_elguero.viewmodel.UsersViewModel
 
@@ -45,8 +42,6 @@ fun LoginScreen(
     var usuario by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     var error by remember { mutableStateOf("") }
-
-    val context = LocalContext.current
 
     Box(
         modifier = Modifier
@@ -152,8 +147,7 @@ fun LoginScreen(
             if (error.isNotBlank()) {
                 Text(
                     text = error,
-                    color = MaterialTheme.colorScheme.error
-                )
+                    color = MaterialTheme.colorScheme.error)
             }
         }
     }

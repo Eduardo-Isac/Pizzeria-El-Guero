@@ -4,7 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import com.example.app26.ui.screens.LoginScreen
+import com.example.pizzeria_elguero.ui.screens.LoginScreen
 import com.example.pizzeria_elguero.ui.theme.Pizzeria_ELGUEROTheme
 
 class LoginActivity : ComponentActivity() {
