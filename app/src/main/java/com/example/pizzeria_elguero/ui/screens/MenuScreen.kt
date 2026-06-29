@@ -30,8 +30,10 @@ import com.example.pizzeria_elguero.navigation.Routes
 @Composable
 fun MenuScreen(navController: NavController) {
 
+    // Obtiene el contexto actual para abrir LoginActivity
     val context = LocalContext.current
 
+    // Contenedor principal con fondo
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -40,6 +42,8 @@ fun MenuScreen(navController: NavController) {
                 contentScale = ContentScale.Crop
             )
     ) {
+
+        // Column acomoda los botones verticalmente
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -48,6 +52,7 @@ fun MenuScreen(navController: NavController) {
             verticalArrangement = Arrangement.Center
         ) {
 
+            // Titulo del menu principal
             Text(
                 text = "Menu principal",
                 color = Color.White,
@@ -56,6 +61,7 @@ fun MenuScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
+            // Boton para ir a la pantalla Cliente
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
@@ -67,6 +73,7 @@ fun MenuScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            // Boton para ir a la pantalla de pedidos guardados
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
@@ -78,6 +85,7 @@ fun MenuScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            // Boton para ir a la pantalla Nosotros
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
@@ -89,6 +97,7 @@ fun MenuScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(32.dp))
 
+            // Boton para regresar al login
             Button(
                 onClick = {
                     context.startActivity(Intent(context, LoginActivity::class.java))
