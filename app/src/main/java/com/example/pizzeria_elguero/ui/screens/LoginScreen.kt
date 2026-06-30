@@ -37,16 +37,10 @@ fun LoginScreen(
     onLoginSuccess: () -> Unit,
     onExit: () -> Unit
 ) {
-    // Guarda el usuario escrito en el campo de texto
+
     var usuario by remember { mutableStateOf("") }
-
-    // Guarda la contrasena escrita en el campo de texto
     var password by remember { mutableStateOf("") }
-
-    // Guarda el mensaje de error cuando el login falla
     var error by remember { mutableStateOf("") }
-
-    // Contenedor principal con imagen de fondo
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -55,44 +49,31 @@ fun LoginScreen(
                 contentScale = ContentScale.Crop
             )
     ) {
-
-        // Column acomoda los elementos del login de arriba hacia abajo
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-
-            // Titulo de la aplicacion
+            verticalArrangement = Arrangement.Center)
+        {
             Text(
                 text = "Pizzeria El Guero",
                 color = Color.White,
                 style = MaterialTheme.typography.headlineMedium
             )
-
             Spacer(modifier = Modifier.height(20.dp))
-
-            // Logo de la pizzeria
             Image(
                 painter = painterResource(id = R.drawable.logopizza),
                 contentDescription = "Logo de la pizzeria",
                 modifier = Modifier.size(190.dp)
             )
-
             Spacer(modifier = Modifier.height(12.dp))
-
-            // Texto de inicio de sesion
             Text(
                 text = "Iniciar sesion",
                 color = Color.White,
                 style = MaterialTheme.typography.titleMedium
             )
-
             Spacer(modifier = Modifier.height(24.dp))
-
-            // Campo para escribir el usuario
             OutlinedTextField(
                 value = usuario,
                 onValueChange = { usuario = it },
@@ -107,10 +88,7 @@ fun LoginScreen(
                     unfocusedBorderColor = Color.White
                 )
             )
-
             Spacer(modifier = Modifier.height(12.dp))
-
-            // Campo para escribir la contrasena
             OutlinedTextField(
                 value = password,
                 onValueChange = { password = it },
@@ -126,20 +104,13 @@ fun LoginScreen(
                     unfocusedBorderColor = Color.White
                 )
             )
-
             Spacer(modifier = Modifier.height(20.dp))
-
-            // Boton para validar el inicio de sesion
             Button(
                 onClick = {
-
-                    // Se valida el usuario usando UsersViewModel
                     val loginCorrecto = usersViewModel.validateLogin(
                         username = usuario,
                         password = password
                     )
-
-                    // Si el login es correcto se ejecuta onLoginSuccess
                     if (loginCorrecto) {
                         onLoginSuccess()
                     } else {
@@ -149,21 +120,14 @@ fun LoginScreen(
             ) {
                 Text("Entrar", color = Color.White)
             }
-
             Spacer(modifier = Modifier.height(12.dp))
-
-            // Boton para cerrar la aplicacion desde el login
             Button(
                 onClick = {
-                    onExit()
-                }
+                    onExit() }
             ) {
                 Text("Salir", color = Color.White)
             }
-
             Spacer(modifier = Modifier.height(12.dp))
-
-            // Muestra el mensaje de error si existe
             if (error.isNotBlank()) {
                 Text(
                     text = error,

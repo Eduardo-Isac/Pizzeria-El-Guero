@@ -1,5 +1,7 @@
 package com.example.pizzeria_elguero.ui.screens
 
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -17,16 +19,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import com.example.pizzeria_elguero.LoginActivity
 import com.example.pizzeria_elguero.R
 import com.example.pizzeria_elguero.navigation.Routes
 
 @Composable
 fun CustomerScreen(navController: NavController) {
 
-    // Contenedor principal con imagen de fondo
+    val context = LocalContext.current
+
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -35,8 +40,6 @@ fun CustomerScreen(navController: NavController) {
                 contentScale = ContentScale.Crop
             )
     ) {
-
-        // Column acomoda el contenido verticalmente
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -44,7 +47,7 @@ fun CustomerScreen(navController: NavController) {
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            // Titulo de la pantalla Cliente
+
             Text(
                 text = "Cliente",
                 color = Color.White,
@@ -53,7 +56,6 @@ fun CustomerScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Boton para ver el menu de pizzas
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
@@ -65,7 +67,6 @@ fun CustomerScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Boton para ir a la pantalla de hacer pedido
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
@@ -77,13 +78,17 @@ fun CustomerScreen(navController: NavController) {
 
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Boton para regresar a la pantalla anterior
             Button(
+                modifier = Modifier.width(220.dp),
                 onClick = {
-                    navController.popBackStack()
+                    context.startActivity(
+                        Intent(context, LoginActivity::class.java)
+                    )
+
+                    (context as Activity).finish()
                 }
             ) {
-                Text("Volver")
+                Text("Salir")
             }
         }
     }

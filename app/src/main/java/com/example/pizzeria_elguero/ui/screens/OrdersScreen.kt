@@ -1,6 +1,6 @@
 package com.example.pizzeria_elguero.ui.screens
-
-// Imports para organizar la pantalla
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -31,67 +31,53 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 // Controlador de navegacion
 import androidx.navigation.NavController
+import com.example.pizzeria_elguero.LoginActivity
 
 // Recursos y modelos del proyecto
 import com.example.pizzeria_elguero.R
 import com.example.pizzeria_elguero.model.Order
 import com.example.pizzeria_elguero.viewmodel.OrderViewModel
-
 @Composable
 fun OrdersScreen(
     navController: NavController,
     orderViewModel: OrderViewModel
 ) {
-
-    // Contenedor principal con fondo
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
             .paint(
                 painter = painterResource(id = R.drawable.fondos),
-                contentScale = ContentScale.Crop
-            )
+                contentScale = ContentScale.Crop)
     ) {
-
-        // Column acomoda el contenido verticalmente
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(32.dp),
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-
+            horizontalAlignment = Alignment.CenterHorizontally) {
             Spacer(modifier = Modifier.height(40.dp))
 
-            // Titulo de la pantalla
             Text(
                 text = "Pedidos",
                 color = Color.White,
                 style = MaterialTheme.typography.headlineMedium
             )
-
             Spacer(modifier = Modifier.height(30.dp))
-
-            // Si no hay pedidos muestra un mensaje
             if (orderViewModel.orders.isEmpty()) {
                 Text(
                     text = "No hay pedidos guardados",
-                    color = Color.White
-                )
+                    color = Color.White)
             } else {
-
-                // Si hay pedidos los muestra en una lista
                 LazyColumn(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
-
-                    // Recorre la lista de pedidos
                     itemsIndexed(orderViewModel.orders) { index, order ->
                         OrderCard(
                             number = index + 1,
@@ -103,14 +89,15 @@ fun OrdersScreen(
 
             Spacer(modifier = Modifier.height(20.dp))
 
-            // Boton para regresar a la pantalla anterior
             Button(
                 onClick = {
-                    navController.popBackStack()
+                    context.startActivity(Intent(
+                        context, LoginActivity::class.java))
+                    (context as Activity).finish()
                 },
                 modifier = Modifier.width(220.dp)
             ) {
-                Text(text = "Volver")
+                Text(text = "salir")
             }
         }
     }
@@ -122,7 +109,6 @@ fun OrderCard(
     order: Order
 ) {
 
-    // Tarjeta visual para mostrar un pedido
     Card(
         modifier = Modifier.fillMaxWidth(),
         colors = CardDefaults.cardColors(
@@ -130,12 +116,10 @@ fun OrderCard(
         )
     ) {
 
-        // Contenido de la tarjeta
         Column(
             modifier = Modifier.padding(16.dp)
         ) {
 
-            // Numero del pedido
             Text(
                 text = "Pedido #$number",
                 style = MaterialTheme.typography.titleMedium
@@ -143,7 +127,6 @@ fun OrderCard(
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Datos del pedido
             Text(text = "Tipo: ${order.type}")
             Text(text = "Tamaño: ${order.size}")
             Text(text = "Cantidad: ${order.amount}")

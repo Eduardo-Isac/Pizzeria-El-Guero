@@ -1,6 +1,6 @@
 package com.example.pizzeria_elguero.ui.screens
-
-// Imports para organizar la pantalla
+import android.app.Activity
+import android.content.Intent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,102 +26,74 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
 // Controlador de navegacion
 import androidx.navigation.NavController
+import com.example.pizzeria_elguero.LoginActivity
 
 // Recursos del proyecto
 import com.example.pizzeria_elguero.R
-
 @Composable
 fun PizzaMenuScreen(navController: NavController) {
-
-    // Contenedor principal con imagen de fondo
+    val context = LocalContext.current
     Box(
         modifier = Modifier
             .fillMaxSize()
             .paint(
                 painter = painterResource(id = R.drawable.fondos),
-                contentScale = ContentScale.Crop
-            )
-    ) {
-
-        // Column acomoda el contenido verticalmente
+                contentScale = ContentScale.Crop)) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(32.dp),
             horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
-        ) {
-
-            // Titulo de la pantalla
+            verticalArrangement = Arrangement.Center) {
             Text(
                 text = "Menu de pizzas",
                 color = Color.White,
-                style = MaterialTheme.typography.headlineMedium
-            )
-
+                style = MaterialTheme.typography.headlineMedium)
             Spacer(modifier = Modifier.height(30.dp))
-
-            // Tarjeta donde se muestra el menu
             Card(
                 modifier = Modifier.width(300.dp),
                 colors = CardDefaults.cardColors(
                     containerColor = Color.White.copy(alpha = 0.85f)
                 )
             ) {
-
-                // Lista de pizzas
                 Column(
                     modifier = Modifier.padding(20.dp)
                 ) {
-
-                    // Pizza Gato Naranja
                     Text("Gato Naranja ... C $120 - G $150")
                     Spacer(modifier = Modifier.height(6.dp))
                     Text("Ingredientes: Jamon y piña")
                     Spacer(modifier = Modifier.height(16.dp))
-
-                    // Pizza Calico
                     Text("Calico ... C $140 - G $170")
                     Spacer(modifier = Modifier.height(6.dp))
                     Text("Ingredientes: Picadillo, chorizo, jamon y pollo")
                     Spacer(modifier = Modifier.height(16.dp))
-
-                    // Pizza Persa
                     Text("Persa ... C $130 - G $160")
                     Spacer(modifier = Modifier.height(6.dp))
                     Text("Ingredientes: Cuatro quesos")
                     Spacer(modifier = Modifier.height(16.dp))
-
-                    // Pizza Siames
                     Text("Siames ... C $120 - G $150")
                     Spacer(modifier = Modifier.height(6.dp))
                     Text("Ingredientes: Queso y pepperoni")
                     Spacer(modifier = Modifier.height(16.dp))
-
-                    // Pizza Mein Coon
                     Text("Mein Coon ... C $150 - G $180")
                     Spacer(modifier = Modifier.height(6.dp))
                     Text("Ingredientes: Mar y tierra")
-                    Spacer(modifier = Modifier.height(16.dp))
-                }
-            }
-
+                    Spacer(modifier = Modifier.height(16.dp)) } }
             Spacer(modifier = Modifier.height(30.dp))
-
-            // Boton para regresar a CustomerScreen
             Button(
                 modifier = Modifier.width(220.dp),
                 onClick = {
-                    navController.popBackStack()
-                }
-            ) {
-                Text("Volver")
-            }
+                    context.startActivity(Intent(
+                        context, LoginActivity::class.java))
+                    (context as Activity).finish()
+                     }) {
+                Text("salir") }
         }
     }
 }

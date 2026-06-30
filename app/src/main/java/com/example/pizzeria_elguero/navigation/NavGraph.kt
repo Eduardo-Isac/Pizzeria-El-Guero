@@ -1,5 +1,4 @@
 package com.example.pizzeria_elguero.navigation
-
 import androidx.compose.runtime.Composable
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
@@ -12,9 +11,6 @@ import com.example.pizzeria_elguero.ui.screens.OrdersScreen
 import com.example.pizzeria_elguero.ui.screens.PizzaMenuScreen
 import com.example.pizzeria_elguero.ui.screens.UsScreen
 import com.example.pizzeria_elguero.viewmodel.OrderViewModel
-
-// NavGraph es el mapa de navegacion de la aplicacion
-// Aqui se conecta cada ruta con su pantalla correspondiente
 @Composable
 fun NavGraph(navController: NavHostController) {
 
